@@ -7,6 +7,7 @@ IF(NOT ROS_BUILD_TYPE)
   SET(ROS_BUILD_TYPE Release)
 ENDIF()
 
+set(CMAKE_VERBOSE_MAKEFILE on)
 MESSAGE("Build type: " ${ROS_BUILD_TYPE})
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -O3 -march=native ")
@@ -30,7 +31,7 @@ endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../../../cmake_modules)
 
-find_package(OpenCV 2.4.3 REQUIRED)
+#find_package(OpenCV 2.4.9.1 REQUIRED EXACT)
 find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 
@@ -40,9 +41,11 @@ ${PROJECT_SOURCE_DIR}/../../../
 ${PROJECT_SOURCE_DIR}/../../../include
 ${Pangolin_INCLUDE_DIRS}
 )
-
-set(LIBS 
-${OpenCV_LIBS} 
+message(STATUS "${OpenCV_LIBRARIES}")
+message(STATUS "${Pangolin_LIBRARIES}")
+message(STATUS "${CMAKE_CXX_FLAGS}")
+set(LIBS
+${OpenCV_LIBS}
 ${EIGEN3_LIBS}
 ${Pangolin_LIBRARIES}
 ${PROJECT_SOURCE_DIR}/../../../Thirdparty/DBoW2/lib/libDBoW2.so

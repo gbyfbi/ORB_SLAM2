@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(ORB_SLAM2)
 
+set(CMAKE_VERBOSE_MAKEFILE on)
 IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE Release)
 ENDIF()
@@ -27,9 +28,16 @@ else()
 endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
+#LIST(APPEND CMAKE_MODULE_PATH /opt/ros/kinetic/share/OpenCV-3.1.0-dev)
 
-find_package(OpenCV 2.4.3 REQUIRED)
-find_package(Eigen3 3.1.0 REQUIRED)
+#find_package(OpenCV 2.4.3 REQUIRED)
+message(STATUS "${CMAKE_MODULE_PATH}")
+
+#find_package(OpenCV 3.1.0 REQUIRED EXACT PATHS "/opt/ros/kinetic/share/OpenCV-3.1.0-dev")
+find_package(OpenCV 3.1.0 REQUIRED EXACT)
+message(STATUS "${OpenCV_LIBRARIES}")
+message(STATUS "${OpenCV_INCLUDE_DIRS}")
+find_package(Eigen3 3.1.0 REQUIRED EXACT)
 find_package(Pangolin REQUIRED)
 
 include_directories(
@@ -40,7 +48,7 @@ ${Pangolin_INCLUDE_DIRS}
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
-
+add_definitions(-DEIGEN_NO_STATIC_ASSERT)
 add_library(${PROJECT_NAME} SHARED
 src/System.cc
 src/Tracking.cc
