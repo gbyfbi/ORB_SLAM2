@@ -79,4 +79,7 @@ src/ros_rgbd.cc
 target_link_libraries(RGBD
 ${LIBS}
 )
+add_dependencies(Mono ORB_SLAM2)
+add_dependencies(RGBD ORB_SLAM2)
+add_dependencies(Stereo ORB_SLAM2)
 

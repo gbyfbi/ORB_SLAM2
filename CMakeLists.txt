@@ -115,6 +115,10 @@ add_executable(mono_euroc
 Examples/Monocular/mono_euroc.cc)
 target_link_libraries(mono_euroc ${PROJECT_NAME})
 
+set(ENV{ROS_PACKAGE_PATH} "$ENV{ROS_PACKAGE_PATH}:/home/gao/Downloads/ORB_SLAM2/Examples/ROS")
+add_subdirectory(Examples/ROS/ORB_SLAM2)
+
+
 # ------------------------- Begin Generic CMake Variable Logging ------------------
 
 # /*	C++ comment style not allowed	*/
