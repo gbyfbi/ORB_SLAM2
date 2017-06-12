@@ -28,7 +28,6 @@ else()
 endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
-#LIST(APPEND CMAKE_MODULE_PATH /opt/ros/kinetic/share/OpenCV-3.1.0-dev)
 
 #find_package(OpenCV 2.4.3 REQUIRED)
 message(STATUS "${CMAKE_MODULE_PATH}")
@@ -49,7 +48,7 @@ ${Pangolin_INCLUDE_DIRS}
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
-add_definitions(-DEIGEN_NO_STATIC_ASSERT)
+
 add_library(${PROJECT_NAME} SHARED
 src/System.cc
 src/Tracking.cc
